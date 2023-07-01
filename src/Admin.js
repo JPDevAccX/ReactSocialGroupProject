@@ -8,9 +8,10 @@ export default function Admin({users, removeUser, clearDB}) {
 
 	// Template
   return (
-		<div>
-			<h1>Administration</h1>
-			<div className="text-center my-4">
+		<div className="admin my-max-width-972px m-auto">
+			<h1 className="text-center">Administration</h1>
+			<span className="visibility-hidden">&nbsp;</span>
+			<div className="text-center mb-4">
 				<Button onClick={clearDB} className='p-3' variant="danger">Clear database</Button>
 			</div>
 			<h2 className="text-center">Users</h2>

@@ -1,5 +1,5 @@
 import SocialCard from "./socialCard" ;
-import Addc from './Addc.js';
+import AddComment from './AddComment.js';
 import "./socialCards.css"
 
 export default function SocialCards(props) {
@@ -9,8 +9,8 @@ export default function SocialCards(props) {
 			props.handleAddLike(postId) ;
 		} ;
     
-		const handleDislike = () => {
-			props.handleDislike(postId) ;
+		const handleAddDislike = () => {
+			props.handleAddDislike(postId) ;
 		} ;
 		const addComments = (text) => {
 			props.onSubmit(text, postId) ;
@@ -18,8 +18,8 @@ export default function SocialCards(props) {
 
 		return (
 			<div className="single-post" key={postId} >
-				<SocialCard cardDef={cardDef} user={props.users[cardDef.userId]} handleAddLike={handleAddLike} handleDislike={handleDislike} />
-				<Addc onSubmit={addComments} />
+				<SocialCard cardDef={cardDef} users={props.users} handleAddLike={handleAddLike} handleAddDislike={handleAddDislike} />
+				<AddComment onSubmit={addComments} />
 			</div>
 		) ;
 }) ;

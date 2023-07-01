@@ -33,21 +33,21 @@ export default function UserLogin(props) {
 
 	// Template
   return (
-		<div className="container">
-			<h1>Login</h1>
-			{loginOkay !== false ? <div className="text-center text-danger">&nbsp;</div> : <div className="text-center text-danger">Incorrect username or password</div>}
+		<div className="user-login my-max-width-972px m-auto">
+			<h1 className="text-center">Login</h1>
+			{loginOkay !== false ? <div className="text-center visibility-hidden">&nbsp;</div> : <div className="text-center text-danger">Incorrect username or password</div>}
 			
 			<Form onSubmit={(event) => submitHandler(event)}>
 				<Form.Group controlId="username">
 					<Form.Label>Username</Form.Label>
-					<Form.Control className='omg'
+					<Form.Control className='input-shadow'
 						name="username"
 						onChange={(event)=>handleChange(event)}  
 					/>
 				</Form.Group>
 				<Form.Group controlId="password">
 					<Form.Label>Password</Form.Label>
-					<Form.Control className='omg'
+					<Form.Control className='input-shadow'
 						name="password"
 						type="password"
 						onChange={(event)=>handleChange(event)}  

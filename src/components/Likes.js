@@ -5,9 +5,9 @@ export default function Likes(props) {
   return (
     <div className="like-container">
       <div>Likes: {props.likeCount} </div>
-      <div> Dislikes: {props.dislikeCount}</div>
+      <div>Dislikes: {props.dislikeCount}</div>
       <Button variant="primary" onClick={() => props.handleAddLike()}>Like 👍</Button>
-      <Button variant="primary" onClick={() => props.handleDislike()}>Dislike 👎</Button>
+      <Button variant="primary" onClick={() => props.handleAddDislike()}>Dislike 👎</Button>
     </div>
   );
 }
