@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import "./socialCards.css"
@@ -5,10 +6,8 @@ import "./socialCards.css"
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 
-export default function Addc(props){
-	const formCommValues = {
-		text: ""
-	}
+export default function AddComment(props){
+	const [comment, changeComment] = useState("") ; 
 
   toastr.options = {
     "closeButton": false,
@@ -29,27 +28,29 @@ export default function Addc(props){
   }
 
   const handleChange = (event) => {
-		formCommValues[event.target.name] = event.target.value;
+		changeComment(event.target.value) ;
   }
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onSubmit(formCommValues.text);
+    props.onSubmit(comment);
+		changeComment("") ;
     toastr["success"]("Comment added", "Success")
   }
 
   return (
 		<div className="add-comment">
 			<Form onSubmit={(event) => submitHandler(event)}>
-				<Form.Group controlId="text">
+				<Form.Group controlId="comment">
 					<Form.Label>Comment</Form.Label>
 					<Form.Control 
-						name="text"
+						name="comment"
+						value={comment}
 						onChange={(event)=>handleChange(event)}  
 					/>
 				</Form.Group>
 				
-				<Button variant="primary" type="submit">
+				<Button variant="primary" type="submit" disabled={!comment}>
 					Submit
 				</Button>
 			</Form>

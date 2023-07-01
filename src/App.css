@@ -5,3 +5,20 @@
   min-height: max(200vh, 800px);
   width: 100%;
 }
+
+.form-control {
+	margin-bottom: 6px;
+}
+
+.my-max-width-972px {
+	max-width: 972px ;
+}
+
+.user-avatar {
+	border: none !important;
+	width: 100px !important;
+	height: 100px;
+	border-radius: 50%;
+	object-fit: cover;
+	box-shadow: rgba(182, 224, 243, 0.12) 0px 2px 4px 0px, rgba(164, 217, 240, 0.32) 0px 2px 16px 0px;
+}

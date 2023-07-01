@@ -5,7 +5,7 @@ export default function Comments(props) {
   const comments = Object.entries(props.comments).map(([commentId, commentDef]) => {
     
     return (
-      <Comment commentDef={commentDef} key={commentId} />
+      <Comment commentDef={commentDef} users={props.users} key={commentId} />
     );
   });
 

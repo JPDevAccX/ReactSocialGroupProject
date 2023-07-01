@@ -1,8 +1,17 @@
-.footer2 {max-height:100px;}
+.logo-side-text {
+	position: absolute ;
+	top: 40%;
+	right: 90%;
+}
 
-.footertext1 {color: #378BA4}
+.logo {
+	width: 200px;
+}
 
-.logo {width: 200px;
-align-items: center;}
+.footertext1 {
+	color: #378BA4
+}
 
-#logo2 {margin-left: 28%;}
+.footer2 {
+	max-height:100px;
+}

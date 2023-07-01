@@ -12,8 +12,8 @@ export default function MyNavbar(props) {
 	}
 	return (
 		<div>
-			<Navbar bg="dark" expand="md">
-				<Navbar.Brand className="nav1">React Social Media Project </Navbar.Brand>
+			<Navbar bg="dark" expand="lg">
+				<Navbar.Brand className="nav1">React Social Cards</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">

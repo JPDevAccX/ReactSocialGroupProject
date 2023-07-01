@@ -103,7 +103,7 @@ function App() {
 		changeCardDefs(changeLikeCountFunc) ;
 	}
 
-	function handleDislike(postId) {
+	function handleAddDislike(postId) {
 		const changeDislikeCountFunc = (cardDefs) => {
 			let cardDefsNew = {...cardDefs} ;
 			cardDefsNew[postId] = {...cardDefsNew[postId] , dislikeCount: cardDefsNew[postId].dislikeCount + 1} ;
@@ -126,7 +126,7 @@ function App() {
 		const changeComments = (cardDefs) => {
 			const cardDefsNew = {...cardDefs} ;
 			const name = users[currentUserId].username ;
-			const commentDef = { [getNextCommentId()]: {name, text} };
+			const commentDef = { [getNextCommentId()]: {userId: currentUserId, name, text} };
 			cardDefsNew[postId].comments = {...cardDefsNew[postId].comments, ...commentDef} ;
 			return cardDefsNew ;
 		}
@@ -200,7 +200,7 @@ function App() {
 						
 						{currentUserId !== null &&
 							<Route path="/view" element={
-								<View onSubmit={ addComment } cardDefs={cardDefs} users={users} handleDislike={(postId) => handleDislike(postId)} handleAddLike={(postId) => handleAddLike(postId)} />
+								<View onSubmit={ addComment } cardDefs={cardDefs} users={users} handleAddDislike={(postId) => handleAddDislike(postId)} handleAddLike={(postId) => handleAddLike(postId)} />
 						} />}
 	
 						{currentUserId !== null &&

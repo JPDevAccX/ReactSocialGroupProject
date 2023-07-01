@@ -83,15 +83,14 @@ export default function UserRegister(props) {
 
 	// Template
   return (
-		<div className="user-register">
-			<h1>Create Account</h1>
-			{getErrorMessageHtml()}
-			{getSuccessMessageHtml()}
+		<div className="user-register my-max-width-972px m-auto">
+			<h1 className="text-center">Create Account</h1>
+			{getErrorMessageHtml() || getSuccessMessageHtml() || <span className="visibility-hidden">&nbsp;</span>}
 
 			<Form onSubmit={(event) => submitHandler(event)}>
 				<Form.Group controlId="username">
 					<Form.Label>Username</Form.Label>
-					<Form.Control className='omg'
+					<Form.Control className='input-shadow'
 						name="username"
 						onChange={(event)=>handleChange(event)}
 						disabled={successMsg}
@@ -99,7 +98,7 @@ export default function UserRegister(props) {
 				</Form.Group>
 				<Form.Group controlId="password">
 					<Form.Label>Password (min {pwdMinLength} characters)</Form.Label>
-					<Form.Control className='omg'
+					<Form.Control className='input-shadow'
 						name="password"
 						type="password"
 						onChange={(event)=>handleChange(event)}  
@@ -108,7 +107,7 @@ export default function UserRegister(props) {
 				</Form.Group>
 				<Form.Group controlId="password_confirm">
 					<Form.Label>Confirm Password</Form.Label>
-					<Form.Control className='omg'
+					<Form.Control className='input-shadow'
 						name="password_confirm"
 						type="password"
 						onChange={(event)=>handleChange(event)}
@@ -117,7 +116,7 @@ export default function UserRegister(props) {
 				</Form.Group>
 				<Form.Group controlId="imageUrl">
 					<Form.Label>Profile Image URL</Form.Label>
-					<Form.Control className='omg'
+					<Form.Control className='input-shadow'
 						name="imageUrl"
 						onChange={(event)=>handleChange(event)}
 						disabled={successMsg}  
@@ -125,7 +124,7 @@ export default function UserRegister(props) {
 				</Form.Group>
 				<Form.Group controlId="bio">
 					<Form.Label>Bio</Form.Label>
-					<Form.Control className='omg'
+					<Form.Control className='input-shadow'
 						name="bio"
 						as="textarea"
 						onChange={(event)=>handleChange(event)}

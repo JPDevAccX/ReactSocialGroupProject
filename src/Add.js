@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import toastr from 'toastr';
@@ -5,10 +6,7 @@ import 'toastr/build/toastr.min.css';
 import './index.css';
 
 function Add(props){
-	const formValues = {
-		imageUrl: "",
-		text: ""
-	}
+	const [formValues, changeFormValues] = useState({imageUrl: "", message: ""}) ;
 
   toastr.options = {
     "closeButton": false,
@@ -29,35 +27,41 @@ function Add(props){
   }
 
   const handleChange = (event) => {
-		formValues[event.target.name] = event.target.value;
+		changeFormValues(values => ({...values, [event.target.name]: event.target.value}))
   }
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onSubmit(formValues.imageUrl, formValues.text);
+    props.onSubmit(formValues.imageUrl, formValues.message);
+		changeFormValues({imageUrl: "", message: ""}) ;
     toastr["success"]("Post added", "Success")
   }
 
   return (
-		<div className="container">
+		<div className="add-post my-max-width-972px m-auto">
+			<h1 className="text-center">Add Post</h1>
+			<span className="visibility-hidden">&nbsp;</span>
 			<Form onSubmit={(event) => submitHandler(event)}>
 				<Form.Group controlId="imageUrl">
 					<Form.Label>Image URL</Form.Label>
-					<Form.Control className='omg'
+					<Form.Control className='input-shadow'
 						name="imageUrl"
+						value={formValues.imageUrl}
 						onChange={(event)=>handleChange(event)}  
 					/>
 				</Form.Group>
-				<Form.Group controlId="text">
+				<Form.Group controlId="message">
 					<Form.Label>Message</Form.Label>
-					<Form.Control className='omg'
-						name="text"
+					<Form.Control className='input-shadow'
+						name="message"
+						value={formValues.message}
 						onChange={(event)=>handleChange(event)}  
 					/>
 				</Form.Group>
-				<Button variant="primary" id='submit-btn' type="submit">
-					Submit
-				</Button>
+
+				<div className="text-center my-4">
+					<Button variant="primary" type="submit">Submit</Button>
+				</div>
 			</Form>
 		</div>
   );
