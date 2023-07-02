@@ -198,25 +198,35 @@ function App() {
 							<UserRegister getUserId={getUserId} onSubmit={addUser} />
 						} />
 						
-						{currentUserId !== null &&
-							<Route path="/view" element={
-								<View onSubmit={ addComment } cardDefs={cardDefs} users={users} handleAddDislike={(postId) => handleAddDislike(postId)} handleAddLike={(postId) => handleAddLike(postId)} />
-						} />}
-	
-						{currentUserId !== null &&
-							<Route path="/add" element={
-								<Add onSubmit={(imageUrl, text) => addCard(currentUserId, imageUrl, text)} />
-						} />}
+						<Route path="/view" element={<>{
+							(currentUserId !== null) &&
+								<View
+									onSubmit={addComment}
+									cardDefs={cardDefs}
+									users={users}
+									handleAddDislike={(postId) => handleAddDislike(postId)}
+									handleAddLike={(postId) => handleAddLike(postId)}
+								/>
+						}</>}
+						/>
 
-						{currentUserId !== null && 
-							<Route path="/profile/:userId" element={
+						<Route path="/add" element={<>{
+							(currentUserId !== null) &&
+								<Add onSubmit={(imageUrl, text) => addCard(currentUserId, imageUrl, text)} />
+						}</>}
+						/>
+	
+						<Route path="/profile/:userId" element={<>{
+							(currentUserId !== null) &&
 								<Profile users={users} currentUserId={currentUserId} removeUser={removeUser} clearDB={clearData} />
-						} />}
-						
-						{currentUserId === "0" && 
-							<Route path="/admin" element={
+						}</>}
+						/>
+
+						<Route path="/admin" element={<>{
+							(currentUserId === "0") &&
 								<Admin users={users} removeUser={removeUser} clearDB={clearData} />
-						} />}
+						}</>}
+						/>
 						
 						<Route path="*" element={<Navigate to="/" replace />} />
 
