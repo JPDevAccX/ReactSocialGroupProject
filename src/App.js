@@ -13,7 +13,6 @@ import View from './View'
 import Add from './Add';
 import Footer from './components/footer';
 import "./App.css"
-import { nextIdFromData } from "./utils/utils";
 
 function App() {
 	// ======= Users state =======
@@ -138,9 +137,12 @@ function App() {
 	// Restore from localStorage on component mount
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users")) || undefined ;
+		const nextUserId  = JSON.parse(localStorage.getItem("nextUserId")) || undefined ;
 		const cardDefs = JSON.parse(localStorage.getItem("cardDefs")) || undefined ;
+		const nextPostId  = JSON.parse(localStorage.getItem("nextPostId")) || undefined ;
+		const nextCommentId  = JSON.parse(localStorage.getItem("nextCommentId")) || undefined ;
 		const currentUserId = JSON.parse(localStorage.getItem("currentUserId")) || undefined ;
-    initWithData(users, cardDefs, currentUserId) ;
+    initWithData(users, nextUserId, cardDefs, nextPostId, nextCommentId, currentUserId) ;
   }, []) ;
 
 	// === Update localStorage when component state changes so we can persist between 'sessions' ===
@@ -156,23 +158,21 @@ function App() {
 			initialCallsRemaining.current-- ;
 			return ;
 		}
-		localStorage.setItem("cardDefs", JSON.stringify(cardDefs)) ;
 		localStorage.setItem("users", JSON.stringify(users)) ;
+		localStorage.setItem("nextUserId", JSON.stringify(nextUserId)) ;
+		localStorage.setItem("cardDefs", JSON.stringify(cardDefs)) ;
+		localStorage.setItem("nextPostId", JSON.stringify(nextPostId)) ;
+		localStorage.setItem("nextCommentId", JSON.stringify(nextCommentId)) ;
 		localStorage.setItem("currentUserId", JSON.stringify(currentUserId)) ;
-  }, [cardDefs, users, currentUserId]) ;
+  }, [users, nextUserId, cardDefs, nextPostId, nextCommentId, currentUserId]) ;
 
 	// Initialise state from given data
-	function initWithData(users = {0: { ...adminUser }}, cardDefs = {}, currentUserId = null) {
+	function initWithData(users = {0: { ...adminUser }}, nextUserId = 1, cardDefs = {}, nextPostId = 0, nextCommentId = 0, currentUserId = null) {
 		changeUsers(users) ;
 		changeCurrentUserId(currentUserId) ;
-		changeNextUserId(nextIdFromData(users)) ;
+		changeNextUserId(nextUserId) ;
 		changeCardDefs(cardDefs) ;
-		changeNextPostId(nextIdFromData(cardDefs)) ;
-		let nextCommentId = -1 ;
-		Object.values(cardDefs).forEach(cardDef => {
-			nextCommentId = Object.keys(cardDef.comments).reduce((max, id) => Math.max(max, id), nextCommentId) ;
-		}) ;
-		nextCommentId++ ;
+		changeNextPostId(nextPostId) ;
 		changeNextCommentId(nextCommentId) ;
 	}
 
